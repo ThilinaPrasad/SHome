@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-title>
+      <img src="assets/imgs/title_icon.png" >
+      SHome
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="!connected">
+  <button ion-button full class="submit-button" (click)="listPairedDevices()">
+    <ion-icon name="refresh"></ion-icon>&nbsp;Refresh Bluetooth Devices</button>
+  <ion-row>
+    <ion-col>
+      <ion-list radio-group [(ngModel)]="pairedDeviceID" *ngIf="listToggle">
+        <ion-item *ngFor="let i of pairedList;let j=index">
+          <ion-label>{{i.name}}</ion-label>
+          <ion-radio value="{{j}}" ></ion-radio>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <button ion-button full class="submit-button" *ngIf="listToggle" (click)="selectDevice()">
+    <ion-icon name="bluetooth"></ion-icon>&nbsp;Connect Bluetooth Devices</button>
+</ion-content>
+<!--After Connected This will load-->
+<ion-content *ngIf="connected">
+  <!--ion-list>
+    <ion-item>
+      <ion-label floating>Type The Data You want to Send</ion-label>
+      <ion-input type="text" name="datasend" [(ngModel)]="dataSend"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button full class="submit-button" (click)="sendData()">
+    <ion-icon name="send"></ion-icon>&nbsp;Send Data Via Bluetooth
+  </button-->
+  <ion-row>
+    <ion-col>
+  <button ion-button (click)="btnPressd('1')" class="lightBtn red" [class.on]="b1"><ion-icon ios="ios-bulb" md="md-bulb"></ion-icon>
+  </button>
+</ion-col>
+<ion-col>
+<button ion-button (click)="btnPressd('2')" class="lightBtn purple" [class.on]="b2"><ion-icon ios="ios-bulb" md="md-bulb"></ion-icon>
+</button>
+</ion-col>
+</ion-row>
+<button ion-button (click)="btnPressd('0')" class="lightBtn fullBtn green" [class.on]="b3"><ion-icon ios="ios-bulb" md="md-bulb"></ion-icon><ion-icon ios="ios-bulb" md="md-bulb"></ion-icon>
+</button>
+</ion-content>
